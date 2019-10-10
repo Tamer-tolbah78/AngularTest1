@@ -1,0 +1,14 @@
+<div class="container">
+    <h3>Family Members:</h3>
+    <button class="btn btn-primary btn-block mb-2">Add new Member</button>
+    <ul class="list-group">
+        <li class=" card card-body mb-3" *ngFor="let member of members">
+            <h4>{{member.firstName}} {{member.lastName}}</h4>
+            <ul>
+                <li class="list-group-item">Age: {{member.age}}</li>
+                <li class="list-group-item">Job: {{member.job}}</li>
+                <li class="list-group-item"> Kids: {{member.kids}}</li>
+            </ul>
+        </li>
+    </ul>
+</div>
