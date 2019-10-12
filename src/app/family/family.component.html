@@ -1,9 +1,22 @@
 <div class="container">
     <h3>Family Members:</h3>
-    <button class="btn btn-primary btn-block mb-2" (click) = "addMember({title:'Tamer Wife', firstName:'Yasmeen',lastName:'Ramadan', job:'teacher', age:'29',kids:true})">Add new Member</button>
+    
+        <button class="btn btn-primary btn-block mb-3" (click) = "hideExtend(hide)">Add Member</button>
+        <form class="list-group" *ngIf="hide">
+            <div class="card card-body mb-2 form-group">
+                    <label for="firstName">Title :</label><input id="firstName" type="text" class="form-control mb-2">
+                <label for="firstName">First Name :</label><input id="firstName" type="text" class="form-control mb-2">
+                <label for="firstName">Last Name :</label><input id="firstName" type="text" class="form-control mb-2">
+                <label for="firstName">Age :</label><input id="firstName" type="text" class="form-control mb-2">
+                <label for="firstName">Job :</label><input id="firstName" type="text" class="form-control mb-2">
+                <label for="firstName">Kids :</label><input id="firstName" type="text" class="form-control mb-2">
+                <button class="btn btn-success btn-block mb-2">Add new Member</button>
+            </div>
+        </form>
+    
     <ul class="list-group">
         <li class=" card card-body mb-3" *ngFor="let member of members" [class.bg-info]="member.details" [style.border-color]="member.details ? 'red' : ''">
-            <h4><span [class.text-warning]="member.details">{{ member.title | uppercase}}: </span>{{member.firstName}} {{member.lastName}} <small><button (click)= "show(member)" class="btn btn-success btn-sm"><i [ngClass]="member.details ? 'fa fa-minus' : 'fa fa-plus'"></i></button></small></h4>
+            <h4><span [class.text-warning]="member.details">{{ member.title | uppercase}}: </span>{{member.firstName}} {{member.lastName}} <small><button (click)= "show(member)" class="btn btn-secondary btn-sm"><i [ngClass]="member.details ? 'fa fa-minus' : 'fa fa-plus'"></i></button></small></h4>
             <ul *ngIf="member.details">
                 <li class="list-group-item">Age: {{member.age}}</li>
                 <li class="list-group-item">Job: {{member.job}}</li>

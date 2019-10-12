@@ -9,6 +9,7 @@ export class FamilyComponent implements OnInit {
   //properties
   members: Member[]
   details:boolean
+  hide:boolean= false
  
   constructor() { 
   }
@@ -63,6 +64,7 @@ export class FamilyComponent implements OnInit {
   ]
   
   }
+  hideExtend = () => {this.hide = !this.hide}
   show = (member: Member) => {member.details = !member.details}
   addMember = (member : Member) => {this.members.push(member)}
 }
