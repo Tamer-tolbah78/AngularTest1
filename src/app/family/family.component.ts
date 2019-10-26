@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-family',
@@ -7,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FamilyComponent implements OnInit {
   //properties
-  members: Member[]
-  details:boolean
-  hide:boolean= false
- 
+  newMember: Member = {
+    title: '',
+    firstName: '',
+    lastName:'',
+    age: null,
+    job: '',
+    kids: true,
+    details: true,
+    email:''
+  }
+  members: Member[];
+  details:boolean;
+  hide:boolean= false;
+  
+  @ViewChild('memberForm') form:any
+
   constructor() { 
   }
 
@@ -23,7 +35,8 @@ export class FamilyComponent implements OnInit {
         age:67,
         job:'Civil Engineer',
         kids: true,
-        details:false
+        details:false,
+        email: 'tolbah.hassanin@yahoo.com'
       },
       {
         title:'Mother',
@@ -32,7 +45,8 @@ export class FamilyComponent implements OnInit {
         age:62,
         job:'Teacher',
         kids: true,
-        details:false
+        details:false,
+        email: 'omtamer@gmail.com'
       },
       {
         title:'Son',
@@ -41,7 +55,8 @@ export class FamilyComponent implements OnInit {
       age:41,
       job:'IT Specialist & Web Desiger',
       kids: true,
-      details:false
+      details:false,
+      email: 'tamer.tolbah@getMaxListeners.com'
     },
     {
       title:'Daughter',
@@ -50,7 +65,8 @@ export class FamilyComponent implements OnInit {
       age:38,
       job:'Quality Assurance',
       kids: true,
-      details:false
+      details:false,
+      email: 'reham.tolbah@yahoo.com'
     },
     {
       title:'Daughter',
@@ -59,15 +75,35 @@ export class FamilyComponent implements OnInit {
       age:37,
       job:'Civil Engineer',
       kids: true,
-      details:false
+      details:false,
+      email: 'marwa.tolba@getMaxListeners.com'
     }
   ]
   
   }
-  hideExtend = () => {this.hide = !this.hide}
+  showAddForms = () => {this.hide = !this.hide}
   show = (member: Member) => {member.details = !member.details}
-  addMember = (member : Member) => {this.members.push(member)}
-}
+//   addMember = () => {this.members.push(this.NewMember);
+//   this.NewMember ={
+//     title: '',
+//     firstName: '',
+//     lastName:'',
+//     age: null,
+//     job: '',
+//     kids:true,
+//     details: true,
+//     email: ''
+//   }
+// }
+
+  onSubmit({value,valid}: {value:Member, valid: boolean}) {
+    if(!valid){
+      console.log('form is not vaid');
+    }else {
+        this.members.push(value)
+      }
+    }
+  }
   
   interface Member {
     title:string,
@@ -76,7 +112,8 @@ export class FamilyComponent implements OnInit {
     age?: number,
     job?:string,
     kids?: boolean,
-    details: boolean
+    details?: boolean
+    email: string,
   }
 
-  
+ 

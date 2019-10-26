@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { FamilyComponent } from './family/family.component';
@@ -10,7 +11,8 @@ import { FamilyComponent } from './family/family.component';
     FamilyComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
