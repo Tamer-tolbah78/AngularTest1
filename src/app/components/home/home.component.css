@@ -1,0 +1,9 @@
+welcome {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+
+em {
+font-weight: bolder;
+text-shadow: 3px 3px 4px green;
+}

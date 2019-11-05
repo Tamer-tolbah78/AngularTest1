@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="card bg-light">
+        <div class="card-header bg-primary text-light mb-3"><h3 class="text-center">Family Members</h3></div>
+        
+        <button class="btn btn-secondary text-white m-2" (click)="hide=!hide">New Member</button>
+    <div class="card card-body m-4" *ngIf="hide">
+        <form #memberForm="ngForm" (ngSubmit)="onSubmit(memberForm)">
+        <div class="form-group">
+            <label for="title">Title :</label>
+            <input id="title" 
+            type="text" 
+            name="title"
+            class="form-control"
+            ngModel
+            #memberTitle="ngModel"
+            [ngClass]="{'is-invalid':memberTitle.errors && memberTitle.touched}"
+            required
+            minlength="3"
+            >  
+            <div [hidden]="!memberTitle.errors?.required" class="invalid-feedback">
+             Title is required   
+            </div>
+            <div [hidden]="!memberTitle.errors?.minlength" class="invalid-feedback">
+             Must be at least 3 characters
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="firstName">First Name :</label>
+            <input id="firstName" ngModel name="firstName" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name :</label>
+            <input id="LastName" ngModel name="lastName" type="text" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="age">Age :</label>
+            <input id="age" ngModel name="age" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="job">Job :</label>
+            <input id="job" ngModel name="job" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="kids">Kids :</label>
+            <input id="kids" ngModel name="kids" class="form-control">
+        </div>
+        <button [disabled]="!memberForm.form.valid" class="btn btn-success btn-block">Add new Member</button>
+        </form>
+    </div>
+
+            <ul class="card-body list-group m-4">
+            <li class="card card-body mb-3" *ngFor="let member of members" [class.bg-info]="member.details"
+            [style.border-color]="member.details ? 'green' : ''">
+            <h4><span [class.text-warning]="member.details">{{ member.title | uppercase}}: </span>{{member.firstName}}
+                {{member.lastName}} <small><button (click)="member.details=!member.details" class="btn btn-dark btn-sm"><i
+                            [ngClass]="member.details ? 'fa fa-minus' : 'fa fa-plus'"></i></button></small></h4>
+            <ul *ngIf="member.details">
+                <li class="list-group-item">Age: {{member.age}}</li>
+                <li class="list-group-item">Job: {{member.job}}</li>
+                <li class="list-group-item"> Kids: {{member.kids}}</li>
+                <li class="list-group-item"> email: {{member.email}}</li>
+            </ul>
+            </li>
+            </ul>
+            <div class="card-footer">End of Members</div>
+    </div>
+</div>
